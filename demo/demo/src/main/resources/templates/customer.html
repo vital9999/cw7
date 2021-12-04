@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+Add customer info
+
+<form action="/main/user/customer" method="post" >
+    <div><label> Address : <input type="text" name="address"/> </label></div>
+    <div><label> Name: <input type="text" name="name"/> </label></div>
+    <div><label> Phone number: <input type="text" name="phone_number"/> </label></div>
+    <div><input type="submit" value="Add"/></div>
+</form>
+<div th:insert="~{footer :: foot}"></div>
+</body>
+</html>

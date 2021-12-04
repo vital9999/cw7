@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cart</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('body').on('click', '.number-minus, .number-plus', function(){
+                var $row = $(this).closest('.number');
+                var $input = $row.find('.number-text');
+                var step = $row.data('step');
+                var val = parseFloat($input.val());
+                if ($(this).hasClass('number-minus')) {
+                    val -= step;
+                } else {
+                    val += step;
+                }
+                $input.val(val);
+                $input.change();
+                return false;
+            });
+
+            $('body').on('change', '.number-text', function(){
+                var $input = $(this);
+                var $row = $input.closest('.number');
+                var step = $row.data('step');
+                var min = parseInt($row.data('min'));
+                var max = parseInt($row.data('max'));
+                var val = parseFloat($input.val());
+                if (isNaN(val)) {
+                    val = step;
+                } else if (min && val < min) {
+                    val = min;
+                } else if (max && val > max) {
+                    val = max;
+                }
+                $input.val(val);
+            });
+        });
+    </script>
+    <style>
+        .number {
+            user-select: none;
+            position: relative;
+            text-align: left;
+            padding: 0;
+            width: 140px;
+            border: 1px solid #ddd;
+            display: inline-block;
+        }
+        .number-minus, .number-plus {
+            position: absolute;
+            top: 0;
+            width: 40px;
+            height: 32px;
+            line-height: 32px;
+            display: block;
+            background: #faf4f2;
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+            font-family: arial;
+            color: #3e1e02;
+            text-decoration: none;
+        }
+        .number-minus {
+            left: 0;
+            border-right: 1px solid #ddd;
+        }
+        .number-plus {
+            right: 0;
+            border-left: 1px solid #ddd;
+        }
+        .number-minus:hover, .number-plus:hover {
+            background: #fffcfb;
+        }
+        .number-minus:active, .number-plus:active {
+            background: #e8e4e2;
+        }
+        .number-text{
+            display: inline-block;
+            font-size: 14px;
+            color: #000;
+            line-height: 32px;
+            height: 32px;
+            padding: 0;
+            margin: 0 0 0 42px;
+            background: #fff;
+            outline: none;
+            border: none;
+            width: 57px;
+            text-align: center;
+        }</style>
+</head>
+<body>
+<form action="/main/cart/save" method="post" th:object="${count}">
+<div class="col" th:each="al : ${cart}">
+<p th:text="${al.getProduct_name()}"></p>
+<div class="number" data-step="1" data-min="1" data-max="100">
+    <input class="number-text" type="text" name="count" value="1">
+    <a href="#" class="number-minus">−</a>
+    <a href="#" class="number-plus">+</a>
+</div>
+</div>
+    <input type="submit" value="save">
+</form>
+</body>
+</html>

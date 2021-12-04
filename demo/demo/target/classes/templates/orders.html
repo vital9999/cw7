@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>orders</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div th:if="${customers!=null and !customers.isEmpty()}">
+<div th:each="el : ${customers}">
+
+    <div>
+        <p th:text="${el.getName()}" class="size" name="text" id="text"></p>
+    </div>
+    <div th:each="al : ${orders}">
+
+        <div>
+            <p th:text="${al.getDate()}" class="size" name="text" id="text"></p>
+            <p th:text="${al.getSum()}" class="size" name="text" id="text"></p>
+
+        </div>
+    </div>
+    <div th:each="il : ${orderDetails}">
+
+        <div>
+            <p th:text="${il.getProduct().getProduct_name()}" class="size" name="text" id="text"></p>
+            <p th:text="${il.getQuantity()}" class="size" name="text" id="text"></p>
+
+        </div>
+    </div>
+</div>
+</div>
+<div th:insert="~{footer :: foot}"></div>
+</body>
+</html>

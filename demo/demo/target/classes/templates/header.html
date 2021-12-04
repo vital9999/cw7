@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div th:fragment="main" class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <a class="my-0 mr-md-auto font-weight-normal" href="/main">
+        <h5 >Пинскдрев</h5>
+    </a>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="/main/cart" >Моя корзина</a>
+    </nav>
+    <a class="btn" href="/main/orders">Мои заказы</a>
+    <a class="btn" href="/main/user" th:text="${user.getLogin()}"></a>
+</div>
+<div th:fragment="admin" th:each="el: ${user}" class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <a class="my-0 mr-md-auto font-weight-normal" href="/admin">
+        <h5 >Myzika</h5>
+    </a>  <nav class="my-2 my-md-0 mr-md-3">
+    <a class="p-2 text-dark" th:href="@{/admin}">my music</a>
+    <a class="p-2 text-dark" th:href="@{/admin}">myPlaylist</a>
+    <a class="p-2 text-dark" th:href="@{/admin}">Плейлист дня</a>
+    <label for="bal">баланс:</label>
+    <a name="bal" class="p-2 text-dark" th:text="a"  href="#"></a>
+</nav>
+    <a class="btn btn-outline-primary" >Пополнить баланс</a>
+</div>
+</body>
+</html>

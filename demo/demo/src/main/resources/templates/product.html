@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>product</title>
+
+</head>
+<body>
+<p th:text="${product.getProduct_name()}"></p>
+<div class="btn-group">
+    <form th:action="@{/main/product/{id}/addCart(id = ${product.getId()})}" method="post">
+
+        <input type="submit" class="btn btn-sm btn-outline-secondary" value="Добавить в корзину"></input>
+    </form>
+</div>
+</body>
+</html>
